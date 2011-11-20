@@ -1,42 +1,53 @@
 var Shape = new Class({
-	initialize: function() {},
+
+	id : 'shape',
+	rotation : 0,
+	scale : 1,
+	interactive : true,
+
+	initialize: function(init_x, init_y) {
+		this.init_x = init_x;
+		this.init_y = init_y;
+		this.x = init_x;
+		this.y = init_y;
+	},
 
 	events : {
+		// TODO add all the reset of the onAction methods
 		onDraw : function(ctx) { this.onDraw(ctx); },
 		onMousedown : function(x, y) { this.onMousedown(x, y); },
 		onMousemove : function(x, y) { this.onMousemove(x, y); },
 		onDblclick : function() { this.onDblclick(); },
 		onMouseup : function() { this.onMouseup(); },
-	}
+	},
+
+	setStyle : function(ctx, fillStyle, lineStyle) {
+		ctx.fillStyle = fillStyle;
+		ctx.lineStyle = lineStyle;
+	},
+
 });
 
 var Circle = new Class({
 	Extends: Shape,
 
-	initialize: function(init_x, init_y, init_r) {
-		this.parent();
-
-		this.init_x = init_x;
-		this.init_y = init_y;
-		this.x = init_x;
-		this.y = init_y;
-		this.r = init_r;
-	},
-
 	id : 'circle',
-	rotation : 0,
-	scale : 1,
 	lineStyle : '#000',
 	fillStyle : '#F00',
-	interactive : true,
 	offset : [0,0],
+
+	initialize: function(init_x, init_y, init_r) {
+		this.parent(init_x, init_y);
+
+		this.r = init_r;
+	},
 
 	/* event callbacks */
 	onDraw : function(ctx)
 	{
+		this.setStyle(ctx, this.fillStyle, this.lineStyle);
+
 		ctx.beginPath();
-		ctx.fillStyle = this.fillStyle;
-		ctx.lineStyle = this.lineStyle;
 		ctx.lineWidth = 3;
 		ctx.arc(this.x, this.y, this.r / 2, 0, Math.PI * 2);
 		ctx.closePath();
