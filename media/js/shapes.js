@@ -98,6 +98,10 @@ var Circle = new Class({
 	},
 });
 
+function distBetween(x1, y1, x2, y2) {
+	return Math.sqrt(Math.pow((x2 - x1), 2) + Math.pow((y2 - y1), 2));
+}
+
 var BoundCircle = new Class( {
 	Extends : Circle,
 
@@ -108,8 +112,19 @@ var BoundCircle = new Class( {
 
 	onMousemove : function(x, y)
 	{
-		console.log('BoundCircle.onMousemove');
-		this.parent(x, y);
+		distance = distBetween(x, y, this.init_x, this.init_y);
+		console.log('dist ' + distance + ' max_r' + this.max_r);
+
+		if (distance > this.max_r) {
+			console.log('too far!');
+			var scale = this.max_r / distance;
+			this.parent(this.init_x + (x - this.init_x) * scale,
+						this.init_y + (y - this.init_y) * scale);
+		}
+		else {
+			console.log('just fine');
+			this.parent(x, y);
+		}
 	},
 });
 
