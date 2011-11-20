@@ -32,7 +32,8 @@ $(window).addEvent('load',function(){
 			h : 50,
 			rotation : 0,
 			scale : 1,
-			fillStyle : '#000',
+			lineStyle : '#000',
+			fillStyle : '#F00',
 			interactive : true,
 			offset : [0,0],
 			events : {
@@ -40,11 +41,15 @@ $(window).addEvent('load',function(){
 				{
 					ctx.beginPath();
 					ctx.fillStyle = this.fillStyle;
-					ctx.lineWidth = 5;
+					ctx.lineStyle = this.lineStyle;
+					ctx.lineWidth = 3;
 					ctx.arc(this.x, this.y, this.h / 2, 0, Math.PI * 2);
 					ctx.closePath();
 					ctx.stroke();
+					ctx.fill();
 
+					// use the dimensions of the rect enclosing our circle
+					// might want to change this later to only be our circle
 					this.setDims(
 						this.x - .5 * this.w,
 						this.y - .5 * this.h,
@@ -60,8 +65,8 @@ $(window).addEvent('load',function(){
 					CANVAS.setDrag(this);
 
 					this.offset = [
-						x - this.dims[0],
-						y - this.dims[1]
+						x - this.x,
+						y - this.y
 					];
 				},
 
