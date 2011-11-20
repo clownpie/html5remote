@@ -21,8 +21,7 @@ $(window).addEvent('load',function(){
 		id : 'myLayer'
 	});
 
-	var circle = new Circle(HEIGHT / 2, WIDTH / 2, 45);
-	console.log(circle.events);
+	var circle = new BoundCircle(HEIGHT / 2, WIDTH / 2, 45);
 	var circleItem = new CanvasItem(circle);
 	layer.add(circleItem);
 	

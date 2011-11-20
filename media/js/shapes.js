@@ -98,9 +98,18 @@ var Circle = new Class({
 	},
 });
 
-var BoundCircle = new Class({
-	Extends: Circle,
-	initialize: function(init_x, init_y, r, max_r) {
+var BoundCircle = new Class( {
+	Extends : Circle,
+
+	initialize : function(init_x, init_y, r, max_r) {
 		this.parent(init_x, init_y, r);
-	}
+		this.max_r = max_r;
+	},
+
+	onMousemove : function(x, y)
+	{
+		console.log('BoundCircle.onMousemove');
+		this.parent(x, y);
+	},
 });
+
