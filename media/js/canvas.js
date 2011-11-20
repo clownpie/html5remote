@@ -22,8 +22,9 @@ $(window).addEvent('load',function(){
 	});
 
 	var circle = new Circle(HEIGHT / 2, WIDTH / 2, 45);
-	//add an item
-	layer.add(circle.getCanvasItem());
+	console.log(circle.events);
+	var circleItem = new CanvasItem(circle);
+	layer.add(circleItem);
 	
 	//simple thread...
 	CANVAS.addThread(new Thread({
