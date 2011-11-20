@@ -21,7 +21,7 @@ $(window).addEvent('load',function(){
 		id : 'myLayer'
 	});
 
-	var circle = new BoundCircle(HEIGHT / 2, WIDTH / 2, 45, 75);
+	var circle = new Joystick(HEIGHT / 2, WIDTH / 2, 45, 75);
 	var circleItem = new CanvasItem(circle);
 	layer.add(circleItem);
 	
