@@ -17,12 +17,12 @@ $(window).addEvent('load',function(){
 	});
 	
 	//add a layer
-	var layer = CANVAS.layers.add( new Layer({
+	var layer = CANVAS.layers.add({
 		id : 'myLayer'
-	}));
+	});
 
 	//add an item
-	layer.add( new CanvasItem({
+	layer.add({
 			id : 'item',
 			home_x : WIDTH / 2,
 			home_y : HEIGHT / 2,
@@ -98,7 +98,7 @@ $(window).addEvent('load',function(){
 				},
 				
 			},
-	}));
+	});
 	
 	//simple thread...
 	CANVAS.addThread(new Thread({
