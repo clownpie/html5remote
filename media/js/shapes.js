@@ -165,6 +165,11 @@ var Joystick = new Class( {
 	{
 		// draw first
 		this.line.onDraw(ctx);
+
+		this.fillStyle = ctx.createRadialGradient(this.x, this.y, 2, this.x, this.y, this.r);
+		this.fillStyle.addColorStop(0, '#F88');
+		this.fillStyle.addColorStop(1, '#F00');
+
 		this.parent(ctx);
 	},
 
