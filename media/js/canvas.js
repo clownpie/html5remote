@@ -38,12 +38,12 @@ $(window).addEvent('load',function(){
 			events : {
 				onDraw : function(ctx)
 				{
-					ctx.clearRect(0, 0, WIDTH, HEIGHT);
+					ctx.beginPath();
 					ctx.fillStyle = this.fillStyle;
-					ctx.lineWidth = 15;
-					ctx.arc(this.x, this.y, this.h / 2, 0, 2 * Math.PI);
+					ctx.lineWidth = 5;
+					ctx.arc(this.x, this.y, this.h / 2, 0, Math.PI * 2);
+					ctx.closePath();
 					ctx.stroke();
-					ctx.fill();
 
 					this.setDims(
 						this.x - .5 * this.w,
@@ -63,6 +63,12 @@ $(window).addEvent('load',function(){
 						x - this.dims[0],
 						y - this.dims[1]
 					];
+				},
+
+				onDblclick : function()
+				{
+					console.log('clear');
+					CANVAS.clear();
 				},
 
 				onMousemove : function(x, y)
@@ -98,6 +104,7 @@ $(window).addEvent('load',function(){
 	CANVAS.addThread(new Thread({
 		id : 'myThread',
 		onExec : function(){
+			CANVAS.clear();
 			CANVAS.draw();
 		}
 	}));
