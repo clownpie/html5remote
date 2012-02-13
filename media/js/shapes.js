@@ -137,15 +137,20 @@ var BoundCircle = new Class( {
 	onMousemove : function(x, y)
 	{
 		d = distance(x, y, this.init_x, this.init_y);
-		console.log('dist ' + d + ' max_r' + this.max_r);
+		//console.log('dist ' + d + ' max_r' + this.max_r);
+
+		//Apparently, this HTTP request will abort before finishing if it's called again. That's good!
+		var img;
+  		var im = img || (img = new Image());
+  		im.src = "http://localhost:8080/e/dist " + d + ' max_r ' + this.max_r;
 
 		if (d > this.max_r) {
-			console.log('too far!');
+			//console.log('too far!');
 			closestPoint = closestPointOnCircle(this.init_x, this.init_y, x, y, this.max_r);
 			this.parent(closestPoint[0], closestPoint[1]);
 		}
 		else {
-			console.log('just fine');
+			//console.log('just fine');
 			this.parent(x, y);
 		}
 	},
